@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/Abdullah-Malik-39/ToCS-Quiz.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'javac index.java'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                sh 'java index'
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
